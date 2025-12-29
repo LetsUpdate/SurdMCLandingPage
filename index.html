@@ -245,15 +245,13 @@
             const statusContainer = document.getElementById('status-container');
             const isOnline = data.online;
             
-            let playersListHTML = '';
+            // Build player names tooltip if there are players online
+            let playerNamesTooltip = '';
             if (isOnline && data.players && data.players.list && data.players.list.length > 0) {
                 const playerNames = data.players.list.map(p => p.name_clean).join(', ');
-                playersListHTML = `
-                    <div class="active-players-tooltip">
-                        <h4 class="players-tooltip-trigger">Aktív játékosok 👥</h4>
-                        <div class="players-tooltip-content">
-                            <p class="player-names">${playerNames}</p>
-                        </div>
+                playerNamesTooltip = `
+                    <div class="players-tooltip-content">
+                        <p class="player-names">${playerNames}</p>
                     </div>
                 `;
             }
@@ -266,16 +264,16 @@
                     </div>
                     ${isOnline ? `
                         <div class="status-details">
-                            <div class="status-item">
+                            <div class="status-item active-players-tooltip">
                                 <span class="status-label">👥 Játékosok:</span>
                                 <span class="status-value">${data.players.online} / ${data.players.max}</span>
+                                ${playerNamesTooltip}
                             </div>
                             <div class="status-item">
                                 <span class="status-label">⚡ Verzió:</span>
                                 <span class="status-value">${data.version.name_clean}</span>
                             </div>
                         </div>
-                        ${playersListHTML}
                     ` : `
                         <p class="offline-message">A szerver jelenleg offline állapotban van.</p>
                     `}

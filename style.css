@@ -293,6 +293,16 @@ h1 {
     display: flex;
     flex-direction: column;
     gap: 8px;
+    position: relative;
+}
+
+.status-item.active-players-tooltip {
+    cursor: pointer;
+    transition: background 0.3s ease;
+}
+
+.status-item.active-players-tooltip:hover {
+    background: rgba(0, 0, 0, 0.5);
 }
 
 .status-label {
@@ -325,30 +335,7 @@ h1 {
     word-wrap: break-word;
 }
 
-/* Tooltip styles for active players */
-.active-players-tooltip {
-    position: relative;
-    margin-top: 15px;
-    display: block;
-    text-align: center;
-}
-
-.players-tooltip-trigger {
-    font-size: 1.2rem;
-    color: var(--gold);
-    cursor: pointer;
-    background: rgba(0, 0, 0, 0.3);
-    padding: 15px 20px;
-    border-radius: 10px;
-    transition: all 0.3s ease;
-    display: inline-block;
-}
-
-.players-tooltip-trigger:hover {
-    background: rgba(0, 0, 0, 0.5);
-    transform: scale(1.02);
-}
-
+/* Tooltip styles for active players on hover */
 .players-tooltip-content {
     position: absolute;
     bottom: 100%;
@@ -366,6 +353,7 @@ h1 {
     max-width: 400px;
     z-index: 1000;
     box-shadow: 0 8px 24px rgba(0, 0, 0, 0.6);
+    white-space: normal;
 }
 
 .players-tooltip-content::after {
