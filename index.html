@@ -194,6 +194,8 @@
             
             try {
                 const successful = document.execCommand('copy');
+                const fallbackMessage = 'Másold ki a szerver címet: ' + text;
+                
                 if (successful) {
                     btn.textContent = 'Másolva! ✓';
                     btn.classList.add('copied');
@@ -202,15 +204,16 @@
                         btn.classList.remove('copied');
                     }, 2000);
                 } else {
-                    // If all else fails, show the IP in an alert
-                    alert('Másold ki a szerver címet: ' + text);
+                    // If execCommand fails, show the IP in an alert
+                    alert(fallbackMessage);
                 }
             } catch (err) {
                 console.error('Fallback: Oops, unable to copy', err);
                 alert('Másold ki a szerver címet: ' + text);
+            } finally {
+                // Always cleanup the textarea element
+                document.body.removeChild(textArea);
             }
-            
-            document.body.removeChild(textArea);
         }
 
         // Parallax effect for stars (works on both desktop and mobile)
