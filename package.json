@@ -1,0 +1,22 @@
+{
+  "name": "surdmc-landing-page",
+  "version": "1.0.0",
+  "description": "Lightweight landing page for SurdCraft.eu Minecraft server",
+  "main": "server.js",
+  "scripts": {
+    "start": "node server.js",
+    "dev": "NODE_ENV=development node server.js",
+    "prod": "NODE_ENV=production node server.js"
+  },
+  "keywords": [
+    "minecraft",
+    "server",
+    "landing-page",
+    "surdcraft"
+  ],
+  "author": "SurdCraft",
+  "license": "MIT",
+  "engines": {
+    "node": ">=14.0.0"
+  }
+}

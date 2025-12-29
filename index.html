@@ -1,0 +1,153 @@
+<!DOCTYPE html>
+<html lang="hu">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    
+    <!-- SEO Meta Tags -->
+    <title>SurdCraft.eu - Minecraft Szerver</title>
+    <meta name="description" content="SurdCraft.eu - Csatlakozz a legjobb magyar Minecraft szerverhez! Élvezd a túlélést, építsd álmaid világát és játssz barátaiddal.">
+    <meta name="keywords" content="minecraft, szerver, surdcraft, magyar minecraft, minecraft server, survival, creative">
+    <meta name="author" content="SurdCraft">
+    <meta name="robots" content="index, follow">
+    
+    <!-- Open Graph Meta Tags for Social Media (Messenger, Facebook) -->
+    <meta property="og:type" content="website">
+    <meta property="og:url" content="https://surdcraft.eu/">
+    <meta property="og:title" content="SurdCraft.eu - Minecraft Szerver">
+    <meta property="og:description" content="Csatlakozz a legjobb magyar Minecraft szerverhez! Élvezd a túlélést, építsd álmaid világát és játssz barátaiddal.">
+    <meta property="og:image" content="https://surdcraft.eu/og-image.svg">
+    <meta property="og:image:width" content="1200">
+    <meta property="og:image:height" content="630">
+    
+    <!-- Twitter Card Meta Tags -->
+    <meta name="twitter:card" content="summary_large_image">
+    <meta name="twitter:title" content="SurdCraft.eu - Minecraft Szerver">
+    <meta name="twitter:description" content="Csatlakozz a legjobb magyar Minecraft szerverhez!">
+    <meta name="twitter:image" content="https://surdcraft.eu/og-image.svg">
+    
+    <!-- Favicon -->
+    <link rel="icon" type="image/svg+xml" href="favicon.svg">
+    
+    <!-- Stylesheet -->
+    <link rel="stylesheet" href="style.css">
+    
+    <!-- Preconnect for performance -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Minecraft&family=Roboto:wght@300;400;700&display=swap" rel="stylesheet">
+</head>
+<body>
+    <div class="stars"></div>
+    <div class="container">
+        <header>
+            <div class="logo">
+                <div class="minecraft-block" role="img" aria-label="Minecraft grass block logo"></div>
+                <h1>SurdCraft.eu</h1>
+            </div>
+        </header>
+
+        <main>
+            <section class="hero">
+                <h2>Üdvözlünk a SurdCraft Minecraft Szerveren!</h2>
+                <p class="tagline">Építs, Fedezz Fel, Játssz!</p>
+            </section>
+
+            <section class="server-info">
+                <div class="info-card">
+                    <div class="card-icon">🎮</div>
+                    <h3>Szerver Cím</h3>
+                    <p class="server-ip">surdcraft.eu</p>
+                    <button class="copy-btn" onclick="copyIP(event)" aria-label="Szerver cím másolása">Másolás</button>
+                </div>
+
+                <div class="info-card">
+                    <div class="card-icon">👥</div>
+                    <h3>Közösség</h3>
+                    <p>Csatlakozz aktív játékosainkhoz</p>
+                </div>
+
+                <div class="info-card">
+                    <div class="card-icon">⚡</div>
+                    <h3>Verzió</h3>
+                    <p>Java Edition 1.20+</p>
+                </div>
+            </section>
+
+            <section class="features">
+                <h2>Miért válaszd a SurdCraft-ot?</h2>
+                <div class="features-grid">
+                    <div class="feature">
+                        <span class="feature-icon">🏰</span>
+                        <h4>Survival</h4>
+                        <p>Klasszikus túlélés élmény egyedi kiegészítésekkel</p>
+                    </div>
+                    <div class="feature">
+                        <span class="feature-icon">🛡️</span>
+                        <h4>Védelem</h4>
+                        <p>Teljes terület védelem és anti-griefing rendszer</p>
+                    </div>
+                    <div class="feature">
+                        <span class="feature-icon">🎯</span>
+                        <h4>Események</h4>
+                        <p>Rendszeres közösségi események és versenyek</p>
+                    </div>
+                    <div class="feature">
+                        <span class="feature-icon">🚀</span>
+                        <h4>Teljesítmény</h4>
+                        <p>Optimalizált szerver 99.9% uptime-mal</p>
+                    </div>
+                </div>
+            </section>
+
+            <section class="cta">
+                <h2>Készen állsz a kalandra?</h2>
+                <p>Nyisd meg a Minecraft-ot és csatlakozz most!</p>
+                <div class="server-address">
+                    <span class="address-label">Szerver cím:</span>
+                    <span class="address-text">surdcraft.eu</span>
+                </div>
+            </section>
+        </main>
+
+        <footer>
+            <p>&copy; 2024 SurdCraft.eu - Minden jog fenntartva</p>
+            <p class="footer-note">Nem hivatalos Minecraft termék. Nincs kapcsolatban a Mojang-gal vagy a Microsoft-tal.</p>
+        </footer>
+    </div>
+
+    <script>
+        function copyIP(event) {
+            const ip = 'surdcraft.eu';
+            navigator.clipboard.writeText(ip).then(() => {
+                const btn = event.target;
+                const originalText = btn.textContent;
+                btn.textContent = 'Másolva! ✓';
+                btn.classList.add('copied');
+                setTimeout(() => {
+                    btn.textContent = originalText;
+                    btn.classList.remove('copied');
+                }, 2000);
+            }).catch(err => {
+                alert('Másold ki: ' + ip);
+            });
+        }
+
+        // Simple parallax effect for stars (throttled with requestAnimationFrame)
+        const stars = document.querySelector('.stars');
+        let ticking = false;
+        
+        document.addEventListener('mousemove', (e) => {
+            if (!ticking) {
+                requestAnimationFrame(() => {
+                    const x = e.clientX / window.innerWidth;
+                    const y = e.clientY / window.innerHeight;
+                    stars.style.transform = `translate(${x * 20}px, ${y * 20}px)`;
+                    ticking = false;
+                });
+                ticking = true;
+            }
+        });
+    </script>
+</body>
+</html>
