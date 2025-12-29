@@ -107,7 +107,26 @@ Edit `server.js` to:
 
 ## Deployment
 
-### Production Deployment
+### Linux Systemd Service (Recommended for Production)
+
+For production deployment on Linux servers, set up the application as a systemd service for automatic startup and management.
+
+**See the complete guide:** [SYSTEMD_SETUP.md](SYSTEMD_SETUP.md)
+
+Quick setup:
+```bash
+# Use the provided setup script
+sudo ./setup-service.sh
+```
+
+The systemd service provides:
+- Automatic startup on system boot
+- Automatic restart on crashes
+- Memory limits and security hardening
+- Centralized logging with journalctl
+- Easy management with systemctl commands
+
+### Production Deployment (Manual)
 
 1. Set environment variables:
 ```bash
