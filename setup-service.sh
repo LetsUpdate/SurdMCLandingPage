@@ -33,7 +33,7 @@ mkdir -p $APP_DIR
 
 # Copy files (assumes script is run from the repo directory)
 echo "Copying application files..."
-cp index.html style.css server.js package.json favicon.svg favicon.png og-image.png og-image.svg robots.txt sitemap.xml $APP_DIR/
+cp index.html style.css server.js package.json package-lock.json favicon.svg favicon.png og-image.png og-image.svg robots.txt sitemap.xml $APP_DIR/
 
 # Set permissions
 echo "Setting permissions..."

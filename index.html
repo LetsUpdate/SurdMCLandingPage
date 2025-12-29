@@ -249,9 +249,11 @@
             if (isOnline && data.players && data.players.list && data.players.list.length > 0) {
                 const playerNames = data.players.list.map(p => p.name_clean).join(', ');
                 playersListHTML = `
-                    <div class="active-players">
-                        <h4>Aktív játékosok:</h4>
-                        <p class="player-names">${playerNames}</p>
+                    <div class="active-players-tooltip">
+                        <h4 class="players-tooltip-trigger">Aktív játékosok 👥</h4>
+                        <div class="players-tooltip-content">
+                            <p class="player-names">${playerNames}</p>
+                        </div>
                     </div>
                 `;
             }

@@ -325,6 +325,73 @@ h1 {
     word-wrap: break-word;
 }
 
+/* Tooltip styles for active players */
+.active-players-tooltip {
+    position: relative;
+    margin-top: 15px;
+    display: inline-block;
+    width: 100%;
+    text-align: center;
+}
+
+.players-tooltip-trigger {
+    font-size: 1.2rem;
+    color: var(--gold);
+    cursor: pointer;
+    background: rgba(0, 0, 0, 0.3);
+    padding: 15px 20px;
+    border-radius: 10px;
+    transition: all 0.3s ease;
+    display: inline-block;
+}
+
+.players-tooltip-trigger:hover {
+    background: rgba(0, 0, 0, 0.5);
+    transform: scale(1.02);
+}
+
+.players-tooltip-content {
+    position: absolute;
+    bottom: 100%;
+    left: 50%;
+    transform: translateX(-50%) translateY(-10px);
+    background: rgba(0, 0, 0, 0.95);
+    border: 2px solid var(--gold);
+    border-radius: 10px;
+    padding: 15px 20px;
+    margin-bottom: 10px;
+    opacity: 0;
+    visibility: hidden;
+    transition: all 0.3s ease;
+    min-width: 200px;
+    max-width: 400px;
+    z-index: 1000;
+    box-shadow: 0 8px 24px rgba(0, 0, 0, 0.6);
+}
+
+.players-tooltip-content::after {
+    content: '';
+    position: absolute;
+    top: 100%;
+    left: 50%;
+    transform: translateX(-50%);
+    border: 8px solid transparent;
+    border-top-color: var(--gold);
+}
+
+.active-players-tooltip:hover .players-tooltip-content {
+    opacity: 1;
+    visibility: visible;
+    transform: translateX(-50%) translateY(0);
+}
+
+.players-tooltip-content .player-names {
+    font-size: 1rem;
+    color: rgba(255, 255, 255, 0.9);
+    word-wrap: break-word;
+    margin: 0;
+}
+
 .offline-message,
 .error-message {
     text-align: center;
