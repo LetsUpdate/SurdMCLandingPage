@@ -329,8 +329,7 @@ h1 {
 .active-players-tooltip {
     position: relative;
     margin-top: 15px;
-    display: inline-block;
-    width: 100%;
+    display: block;
     text-align: center;
 }
 
@@ -354,7 +353,7 @@ h1 {
     position: absolute;
     bottom: 100%;
     left: 50%;
-    transform: translateX(-50%) translateY(-10px);
+    transform: translate(-50%, -10px);
     background: rgba(0, 0, 0, 0.95);
     border: 2px solid var(--gold);
     border-radius: 10px;
@@ -382,7 +381,7 @@ h1 {
 .active-players-tooltip:hover .players-tooltip-content {
     opacity: 1;
     visibility: visible;
-    transform: translateX(-50%) translateY(0);
+    transform: translate(-50%, 0);
 }
 
 .players-tooltip-content .player-names {
