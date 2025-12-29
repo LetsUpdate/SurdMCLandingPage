@@ -1,39 +1,39 @@
 # Linux Systemd Service Setup Guide
 
-This guide shows you how to set up the SurdCraft landing page as a systemd service on Linux, so it runs automatically on system boot and can be managed like any other system service.
+This guide shows you how to set up the SurdMC landing page as a systemd service on Linux, so it runs automatically on system boot and can be managed like any other system service.
 
 ## Prerequisites
 
 - Linux system with systemd (Ubuntu, Debian, CentOS, Fedora, etc.)
 - Node.js 14.0.0 or higher installed
 - Root or sudo access
-- The SurdMC landing page files in a permanent location (e.g., `/opt/surdmc` or `/var/www/surdmc`)
+- The SurdMC landing page files in a permanent location (e.g., `/opt/surdmcweb` or `/var/www/surdmcweb`)
 
 ## Step 1: Prepare the Application Directory
 
-1. Choose a permanent location for your application. We'll use `/opt/surdmc` in this guide:
+1. Choose a permanent location for your application. We'll use `/opt/surdmcweb` in this guide:
 
 ```bash
-sudo mkdir -p /opt/surdmc
+sudo mkdir -p /opt/surdmcweb
 ```
 
 2. Copy your application files to this directory:
 
 ```bash
-sudo cp -r /path/to/your/files/* /opt/surdmc/
+sudo cp -r /path/to/your/files/* /opt/surdmcweb/
 ```
 
 3. Set appropriate permissions:
 
 ```bash
 # Create a dedicated user for running the service (recommended)
-sudo useradd -r -s /bin/false surdmc
+sudo useradd -r -s /bin/false surdmcweb
 
 # Set ownership
-sudo chown -R surdmc:surdmc /opt/surdmc
+sudo chown -R surdmcweb:surdmcweb /opt/surdmcweb
 
 # Set permissions
-sudo chmod -R 755 /opt/surdmc
+sudo chmod -R 755 /opt/surdmcweb
 ```
 
 ## Step 2: Create the Systemd Service File
@@ -48,16 +48,16 @@ Add the following content:
 
 ```ini
 [Unit]
-Description=SurdCraft.eu Landing Page Server
+Description=SurdMC.eu Landing Page Server
 Documentation=https://github.com/LetsUpdate/SurdMCLandingPage
 After=network.target
 
 [Service]
 Type=simple
-User=surdmc
-Group=surdmc
-WorkingDirectory=/opt/surdmc
-ExecStart=/usr/bin/node /opt/surdmc/server.js
+User=surdmcweb
+Group=surdmcweb
+WorkingDirectory=/opt/surdmcweb
+ExecStart=/usr/bin/node /opt/surdmcweb/server.js
 
 # Environment variables
 Environment=NODE_ENV=production
@@ -79,7 +79,7 @@ NoNewPrivileges=true
 PrivateTmp=true
 ProtectSystem=strict
 ProtectHome=true
-ReadWritePaths=/opt/surdmc
+ReadWritePaths=/opt/surdmcweb
 
 # Resource limits
 LimitNOFILE=65535
@@ -118,7 +118,7 @@ sudo systemctl status surdmc
 You should see output showing the service is active and running:
 
 ```
-● surdmc.service - SurdCraft.eu Landing Page Server
+● surdmc.service - SurdMC.eu Landing Page Server
      Loaded: loaded (/etc/systemd/system/surdmc.service; enabled; vendor preset: enabled)
      Active: active (running) since ...
 ```
@@ -220,12 +220,12 @@ For production, use Nginx or Apache as a reverse proxy:
 
 ### Nginx Configuration
 
-Create `/etc/nginx/sites-available/surdcraft`:
+Create `/etc/nginx/sites-available/surdmc`:
 
 ```nginx
 server {
     listen 80;
-    server_name surdcraft.eu www.surdcraft.eu;
+    server_name surdmc.eu www.surdmc.eu;
 
     # Gzip compression
     gzip on;
@@ -249,7 +249,7 @@ server {
 Enable the site:
 
 ```bash
-sudo ln -s /etc/nginx/sites-available/surdcraft /etc/nginx/sites-enabled/
+sudo ln -s /etc/nginx/sites-available/surdmc /etc/nginx/sites-enabled/
 sudo nginx -t
 sudo systemctl restart nginx
 ```
@@ -260,7 +260,7 @@ Install Certbot and obtain SSL certificate:
 
 ```bash
 sudo apt install certbot python3-certbot-nginx
-sudo certbot --nginx -d surdcraft.eu -d www.surdcraft.eu
+sudo certbot --nginx -d surdmc.eu -d www.surdmc.eu
 ```
 
 Certbot will automatically configure HTTPS and set up auto-renewal.
@@ -291,14 +291,14 @@ systemd-cgtop -m
 
 ### Set up Automatic Alerts
 
-Create a monitoring script `/opt/surdmc/monitor.sh`:
+Create a monitoring script `/opt/surdmcweb/monitor.sh`:
 
 ```bash
 #!/bin/bash
 SERVICE="surdmc"
 
 if ! systemctl is-active --quiet $SERVICE; then
-    echo "Service $SERVICE is not running!" | mail -s "Alert: $SERVICE Down" admin@surdcraft.eu
+    echo "Service $SERVICE is not running!" | mail -s "Alert: $SERVICE Down" admin@surdmc.eu
     systemctl start $SERVICE
 fi
 ```
@@ -306,14 +306,14 @@ fi
 Make it executable and add to crontab:
 
 ```bash
-sudo chmod +x /opt/surdmc/monitor.sh
+sudo chmod +x /opt/surdmcweb/monitor.sh
 sudo crontab -e
 ```
 
 Add this line to check every 5 minutes:
 
 ```
-*/5 * * * * /opt/surdmc/monitor.sh
+*/5 * * * * /opt/surdmcweb/monitor.sh
 ```
 
 ## Troubleshooting
@@ -363,7 +363,7 @@ sudo kill -9 <PID>
 ### Backup
 
 ```bash
-sudo tar -czf surdmc-backup-$(date +%Y%m%d).tar.gz /opt/surdmc
+sudo tar -czf surdmc-backup-$(date +%Y%m%d).tar.gz /opt/surdmcweb
 ```
 
 ### Update
@@ -373,13 +373,13 @@ sudo tar -czf surdmc-backup-$(date +%Y%m%d).tar.gz /opt/surdmc
 sudo systemctl stop surdmc
 
 # Backup current version
-sudo cp -r /opt/surdmc /opt/surdmc.backup
+sudo cp -r /opt/surdmcweb /opt/surdmcweb.backup
 
 # Update files
-sudo cp -r /path/to/new/files/* /opt/surdmc/
+sudo cp -r /path/to/new/files/* /opt/surdmcweb/
 
 # Fix permissions
-sudo chown -R surdmc:surdmc /opt/surdmc
+sudo chown -R surdmcweb:surdmcweb /opt/surdmcweb
 
 # Restart service
 sudo systemctl start surdmc
@@ -402,8 +402,8 @@ set -e
 echo "=== SurdMC Systemd Service Setup ==="
 
 # Configuration
-APP_DIR="/opt/surdmc"
-SERVICE_USER="surdmc"
+APP_DIR="/opt/surdmcweb"
+SERVICE_USER="surdmcweb"
 SERVICE_FILE="/etc/systemd/system/surdmc.service"
 PORT=3000
 
@@ -439,16 +439,16 @@ chmod -R 755 $APP_DIR
 echo "Creating systemd service file..."
 cat > $SERVICE_FILE << 'EOF'
 [Unit]
-Description=SurdCraft.eu Landing Page Server
+Description=SurdMC.eu Landing Page Server
 Documentation=https://github.com/LetsUpdate/SurdMCLandingPage
 After=network.target
 
 [Service]
 Type=simple
-User=surdmc
-Group=surdmc
-WorkingDirectory=/opt/surdmc
-ExecStart=/usr/bin/node /opt/surdmc/server.js
+User=surdmcweb
+Group=surdmcweb
+WorkingDirectory=/opt/surdmcweb
+ExecStart=/usr/bin/node /opt/surdmcweb/server.js
 
 Environment=NODE_ENV=production
 Environment=PORT=3000
@@ -466,7 +466,7 @@ NoNewPrivileges=true
 PrivateTmp=true
 ProtectSystem=strict
 ProtectHome=true
-ReadWritePaths=/opt/surdmc
+ReadWritePaths=/opt/surdmcweb
 
 LimitNOFILE=65535
 MemoryMax=100M
@@ -510,7 +510,7 @@ sudo ./setup-service.sh
 
 ## Summary
 
-You now have the SurdCraft landing page running as a system service that will:
+You now have the SurdMC landing page running as a system service that will:
 - Start automatically on system boot
 - Restart automatically if it crashes
 - Log to the system journal

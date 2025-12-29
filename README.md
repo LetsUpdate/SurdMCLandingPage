@@ -1,6 +1,6 @@
 # SurdMC Landing Page
 
-A lightweight, modern landing page for the SurdCraft.eu Minecraft server. Built with performance and SEO in mind.
+A lightweight, modern landing page for the SurdMC.eu Minecraft server. Built with performance and SEO in mind.
 
 ## Features
 
