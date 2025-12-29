@@ -229,7 +229,7 @@ server {
 
     # Gzip compression
     gzip on;
-    gzip_types text/plain text/css application/json application/javascript text/xml application/xml image/svg+xml;
+    gzip_types text/plain text/css application/json application/javascript text/xml application/xml image/png;
     gzip_min_length 1000;
 
     location / {
