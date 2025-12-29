@@ -7,8 +7,8 @@ set -e
 echo "=== SurdMC Systemd Service Setup ==="
 
 # Configuration
-APP_DIR="/opt/surdmc"
-SERVICE_USER="surdmc"
+APP_DIR="/opt/surdmcweb"
+SERVICE_USER="surdmcweb"
 SERVICE_FILE="/etc/systemd/system/surdmc.service"
 PORT=3000
 
@@ -44,16 +44,16 @@ chmod -R 755 $APP_DIR
 echo "Creating systemd service file..."
 cat > $SERVICE_FILE << 'EOF'
 [Unit]
-Description=SurdCraft.eu Landing Page Server
+Description=SurdMC.eu Landing Page Server
 Documentation=https://github.com/LetsUpdate/SurdMCLandingPage
 After=network.target
 
 [Service]
 Type=simple
-User=surdmc
-Group=surdmc
-WorkingDirectory=/opt/surdmc
-ExecStart=/usr/bin/node /opt/surdmc/server.js
+User=surdmcweb
+Group=surdmcweb
+WorkingDirectory=/opt/surdmcweb
+ExecStart=/usr/bin/node /opt/surdmcweb/server.js
 
 Environment=NODE_ENV=production
 Environment=PORT=3000
@@ -71,7 +71,7 @@ NoNewPrivileges=true
 PrivateTmp=true
 ProtectSystem=strict
 ProtectHome=true
-ReadWritePaths=/opt/surdmc
+ReadWritePaths=/opt/surdmcweb
 
 LimitNOFILE=65535
 MemoryMax=100M
