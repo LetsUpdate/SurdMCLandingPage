@@ -42,7 +42,7 @@
     <div class="container">
         <header>
             <div class="logo">
-                <div class="minecraft-block"></div>
+                <div class="minecraft-block" role="img" aria-label="Minecraft grass block logo"></div>
                 <h1>SurdCraft.eu</h1>
             </div>
         </header>
@@ -58,7 +58,7 @@
                     <div class="card-icon">🎮</div>
                     <h3>Szerver Cím</h3>
                     <p class="server-ip">surdcraft.eu</p>
-                    <button class="copy-btn" onclick="copyIP()">Másolás</button>
+                    <button class="copy-btn" onclick="copyIP(event)" aria-label="Szerver cím másolása">Másolás</button>
                 </div>
 
                 <div class="info-card">
@@ -117,7 +117,7 @@
     </div>
 
     <script>
-        function copyIP() {
+        function copyIP(event) {
             const ip = 'surdcraft.eu';
             navigator.clipboard.writeText(ip).then(() => {
                 const btn = event.target;
@@ -133,12 +133,20 @@
             });
         }
 
-        // Simple parallax effect for stars
+        // Simple parallax effect for stars (throttled with requestAnimationFrame)
+        const stars = document.querySelector('.stars');
+        let ticking = false;
+        
         document.addEventListener('mousemove', (e) => {
-            const stars = document.querySelector('.stars');
-            const x = e.clientX / window.innerWidth;
-            const y = e.clientY / window.innerHeight;
-            stars.style.transform = `translate(${x * 20}px, ${y * 20}px)`;
+            if (!ticking) {
+                requestAnimationFrame(() => {
+                    const x = e.clientX / window.innerWidth;
+                    const y = e.clientY / window.innerHeight;
+                    stars.style.transform = `translate(${x * 20}px, ${y * 20}px)`;
+                    ticking = false;
+                });
+                ticking = true;
+            }
         });
     </script>
 </body>

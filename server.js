@@ -204,6 +204,7 @@ server.listen(PORT, HOST, () => {
 // Graceful shutdown
 process.on('SIGTERM', () => {
     log('SIGTERM received, shutting down gracefully...');
+    if (memoryLogInterval) clearInterval(memoryLogInterval);
     server.close(() => {
         log('Server closed');
         process.exit(0);
@@ -212,6 +213,7 @@ process.on('SIGTERM', () => {
 
 process.on('SIGINT', () => {
     log('SIGINT received, shutting down gracefully...');
+    if (memoryLogInterval) clearInterval(memoryLogInterval);
     server.close(() => {
         log('Server closed');
         process.exit(0);
@@ -219,8 +221,9 @@ process.on('SIGINT', () => {
 });
 
 // Log memory usage every 5 minutes
+let memoryLogInterval = null;
 if (process.env.NODE_ENV === 'production') {
-    setInterval(() => {
+    memoryLogInterval = setInterval(() => {
         const memUsage = process.memoryUsage();
         log(`Memory - Heap: ${Math.round(memUsage.heapUsed / 1024 / 1024)}MB / ${Math.round(memUsage.heapTotal / 1024 / 1024)}MB, RSS: ${Math.round(memUsage.rss / 1024 / 1024)}MB`);
     }, 300000); // 5 minutes
