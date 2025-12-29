@@ -1,0 +1,9 @@
+# robots.txt for SurdMC.eu
+User-agent: *
+Allow: /
+
+# Sitemaps
+Sitemap: https://surdmc.eu/sitemap.xml
+
+# Crawl-delay for respectful crawling
+Crawl-delay: 1

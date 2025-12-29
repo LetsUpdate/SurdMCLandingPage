@@ -332,6 +332,60 @@ h1 {
     letter-spacing: 2px;
 }
 
+/* Contact Section */
+.contact {
+    text-align: center;
+    padding: 60px 20px;
+    animation: fadeIn 1s ease-out 1.5s both;
+}
+
+.contact h2 {
+    font-size: 2.5rem;
+    margin-bottom: 20px;
+    color: var(--gold);
+}
+
+.contact p {
+    font-size: 1.2rem;
+    margin-bottom: 30px;
+    color: rgba(255, 255, 255, 0.8);
+}
+
+.contact-links {
+    display: flex;
+    justify-content: center;
+    gap: 30px;
+    flex-wrap: wrap;
+}
+
+.contact-link {
+    display: inline-flex;
+    align-items: center;
+    gap: 10px;
+    background: rgba(255, 255, 255, 0.1);
+    backdrop-filter: blur(10px);
+    border: 2px solid rgba(255, 255, 255, 0.2);
+    border-radius: 15px;
+    padding: 20px 40px;
+    text-decoration: none;
+    color: var(--white);
+    font-size: 1.2rem;
+    font-weight: 600;
+    transition: all 0.3s ease;
+    box-shadow: 0 8px 32px rgba(0, 0, 0, 0.3);
+}
+
+.contact-link:hover {
+    transform: translateY(-5px) scale(1.05);
+    border-color: var(--grass-green);
+    box-shadow: 0 12px 48px rgba(110, 175, 61, 0.3);
+    background: rgba(110, 175, 61, 0.2);
+}
+
+.contact-icon {
+    font-size: 2rem;
+}
+
 /* Footer */
 footer {
     text-align: center;

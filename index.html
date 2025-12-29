@@ -32,7 +32,7 @@
     <meta name="twitter:image" content="https://surdmc.eu/og-image.png">
     
     <!-- Favicon -->
-    <link rel="icon" type="image/png" href="favicon.png">
+    <link rel="icon" type="image/svg+xml" href="favicon.svg">
     
     <!-- Stylesheet -->
     <link rel="stylesheet" href="style.css">
@@ -41,6 +41,24 @@
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Minecraft&family=Roboto:wght@300;400;700&display=swap" rel="stylesheet">
+    
+    <!-- Structured Data for SEO -->
+    <script type="application/ld+json">
+    {
+        "@context": "https://schema.org",
+        "@type": "Organization",
+        "name": "SurdMC.eu",
+        "url": "https://surdmc.eu",
+        "logo": "https://surdmc.eu/og-image.png",
+        "description": "Csatlakozz a legjobb magyar Minecraft szerverhez! Élvezd a túlélést, építsd álmaid világát és játssz barátaiddal.",
+        "contactPoint": {
+            "@type": "ContactPoint",
+            "email": "info@surdmc.eu",
+            "contactType": "Customer Service"
+        },
+        "sameAs": []
+    }
+    </script>
 </head>
 <body>
     <div class="stars"></div>
@@ -113,6 +131,21 @@
                     <span class="address-text">surdmc.eu</span>
                 </div>
             </section>
+
+            <section class="contact">
+                <h2>Kapcsolat</h2>
+                <p>Van kérdésed vagy szeretnél csatlakozni a közösségünkhöz?</p>
+                <div class="contact-links">
+                    <a href="#" class="contact-link" aria-label="Discord szerver">
+                        <span class="contact-icon">💬</span>
+                        <span>Discord</span>
+                    </a>
+                    <a href="mailto:info@surdmc.eu" class="contact-link" aria-label="Email">
+                        <span class="contact-icon">📧</span>
+                        <span>Email</span>
+                    </a>
+                </div>
+            </section>
         </main>
 
         <footer>
@@ -138,16 +171,57 @@
             });
         }
 
-        // Simple parallax effect for stars (throttled with requestAnimationFrame)
+        // Parallax effect for stars (works on both desktop and mobile)
         const stars = document.querySelector('.stars');
         let ticking = false;
         
+        // Desktop: mouse movement
         document.addEventListener('mousemove', (e) => {
             if (!ticking) {
                 requestAnimationFrame(() => {
                     const x = e.clientX / window.innerWidth;
                     const y = e.clientY / window.innerHeight;
                     stars.style.transform = `translate(${x * 20}px, ${y * 20}px)`;
+                    ticking = false;
+                });
+                ticking = true;
+            }
+        });
+        
+        // Mobile: device orientation (gyroscope)
+        if (window.DeviceOrientationEvent) {
+            window.addEventListener('deviceorientation', (e) => {
+                if (!ticking) {
+                    requestAnimationFrame(() => {
+                        // gamma: left to right tilt (-90 to 90)
+                        // beta: front to back tilt (-180 to 180)
+                        const x = (e.gamma || 0) / 90; // Normalize to -1 to 1
+                        const y = (e.beta || 0) / 180; // Normalize to -1 to 1
+                        stars.style.transform = `translate(${x * 20}px, ${y * 20}px)`;
+                        ticking = false;
+                    });
+                    ticking = true;
+                }
+            });
+        }
+        
+        // Mobile: touch movement as fallback
+        let touchStartX = 0;
+        let touchStartY = 0;
+        
+        document.addEventListener('touchstart', (e) => {
+            touchStartX = e.touches[0].clientX;
+            touchStartY = e.touches[0].clientY;
+        });
+        
+        document.addEventListener('touchmove', (e) => {
+            if (!ticking) {
+                requestAnimationFrame(() => {
+                    const touchX = e.touches[0].clientX;
+                    const touchY = e.touches[0].clientY;
+                    const deltaX = (touchX - touchStartX) / window.innerWidth;
+                    const deltaY = (touchY - touchStartY) / window.innerHeight;
+                    stars.style.transform = `translate(${deltaX * 40}px, ${deltaY * 40}px)`;
                     ticking = false;
                 });
                 ticking = true;

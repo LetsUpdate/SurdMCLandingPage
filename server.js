@@ -22,7 +22,8 @@ const MIME_TYPES = {
     '.woff': 'font/woff',
     '.woff2': 'font/woff2',
     '.ttf': 'font/ttf',
-    '.txt': 'text/plain'
+    '.txt': 'text/plain',
+    '.xml': 'application/xml'
 };
 
 // Cache for file contents (optional, for better performance)
@@ -41,6 +42,17 @@ function getContentType(filePath) {
     return MIME_TYPES[ext] || 'application/octet-stream';
 }
 
+// Get security headers
+function getSecurityHeaders() {
+    return {
+        'X-Content-Type-Options': 'nosniff',
+        'X-Frame-Options': 'SAMEORIGIN',
+        'X-XSS-Protection': '1; mode=block',
+        'Referrer-Policy': 'strict-origin-when-cross-origin',
+        'Permissions-Policy': 'geolocation=(), microphone=(), camera=()'
+    };
+}
+
 // Serve static file
 function serveFile(res, filePath, statusCode = 200) {
     const contentType = getContentType(filePath);
@@ -48,11 +60,13 @@ function serveFile(res, filePath, statusCode = 200) {
     // Check cache first
     if (CACHE_ENABLED && fileCache.has(filePath)) {
         const cachedContent = fileCache.get(filePath);
-        res.writeHead(statusCode, {
+        const headers = {
             'Content-Type': contentType,
             'Cache-Control': 'public, max-age=86400', // Cache for 24 hours
-            'Content-Length': cachedContent.length
-        });
+            'Content-Length': cachedContent.length,
+            ...getSecurityHeaders()
+        };
+        res.writeHead(statusCode, headers);
         res.end(cachedContent);
         return;
     }
@@ -75,11 +89,13 @@ function serveFile(res, filePath, statusCode = 200) {
                 fileCache.set(filePath, content);
             }
             
-            res.writeHead(statusCode, {
+            const headers = {
                 'Content-Type': contentType,
                 'Cache-Control': 'public, max-age=86400',
-                'Content-Length': content.length
-            });
+                'Content-Length': content.length,
+                ...getSecurityHeaders()
+            };
+            res.writeHead(statusCode, headers);
             res.end(content);
         }
     });
@@ -165,6 +181,26 @@ const server = http.createServer((req, res) => {
     
     // Prevent directory traversal attacks
     urlPath = path.normalize(urlPath).replace(/^(\.\.[\/\\])+/, '');
+    
+    // Health check endpoint
+    if (urlPath === '/health') {
+        const healthData = {
+            status: 'ok',
+            timestamp: new Date().toISOString(),
+            uptime: process.uptime(),
+            memory: {
+                used: Math.round(process.memoryUsage().heapUsed / 1024 / 1024),
+                total: Math.round(process.memoryUsage().heapTotal / 1024 / 1024)
+            }
+        };
+        res.writeHead(200, { 
+            'Content-Type': 'application/json',
+            ...getSecurityHeaders()
+        });
+        res.end(JSON.stringify(healthData, null, 2));
+        log(`200: ${req.method} ${req.url}`);
+        return;
+    }
     
     // Default to index.html for root
     if (urlPath === '/' || urlPath === '') {

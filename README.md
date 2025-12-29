@@ -7,10 +7,14 @@ A lightweight, modern landing page for the SurdMC.eu Minecraft server. Built wit
 - 🎨 **Modern Design**: Simple yet innovative Minecraft-themed design
 - 📱 **Fully Responsive**: Optimized for both mobile and desktop devices
 - 🚀 **Lightning Fast**: Minimal dependencies and RAM-optimized server
-- 🔍 **SEO Optimized**: Comprehensive meta tags for search engines
+- 🔍 **SEO Optimized**: Comprehensive meta tags and structured data for search engines
 - 💬 **Social Media Ready**: Open Graph tags for Facebook/Messenger previews
 - ⚡ **High Performance**: Built-in file caching and efficient serving
 - 🎯 **Zero Dependencies**: Pure Node.js server with no external packages
+- 🔒 **Security Headers**: Enhanced security with modern HTTP headers
+- 🎮 **Multi-Device Animations**: Parallax effects work on desktop (mouse), mobile (gyroscope), and touch
+- 🏥 **Health Check**: Built-in `/health` endpoint for monitoring
+- 🤖 **SEO Structured Data**: JSON-LD schema for better search engine understanding
 
 ## Tech Stack
 
@@ -73,11 +77,40 @@ The server is optimized for minimal RAM usage:
 
 Typical memory usage: **~10-30MB** depending on cache size
 
+## API Endpoints
+
+### Health Check
+
+`GET /health`
+
+Returns server health status and metrics.
+
+**Response:**
+```json
+{
+  "status": "ok",
+  "timestamp": "2025-12-29T11:16:18.855Z",
+  "uptime": 42.5,
+  "memory": {
+    "used": 12,
+    "total": 18
+  }
+}
+```
+
+**Use cases:**
+- Monitoring server health
+- Load balancer health checks
+- Uptime monitoring services
+
 ## SEO Features
 
 - Semantic HTML5 structure
 - Meta tags for search engines
 - Open Graph tags for social media
+- Structured data (JSON-LD) for rich snippets
+- robots.txt for crawler directives
+- sitemap.xml for search engine indexing
 - Optimized page load speed
 - Mobile-friendly responsive design
 - Proper heading hierarchy
