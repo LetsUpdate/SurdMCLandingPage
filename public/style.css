@@ -575,6 +575,251 @@ footer p {
     font-style: italic;
 }
 
+/* Modpack Section */
+.modpack-section {
+    padding: 60px 20px;
+    animation: fadeIn 1s ease-out 0.6s both;
+}
+
+.modpack-section h2 {
+    text-align: center;
+    font-size: 2.5rem;
+    margin-bottom: 20px;
+    color: var(--gold);
+    text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.5);
+}
+
+.section-description {
+    text-align: center;
+    font-size: 1.2rem;
+    color: rgba(255, 255, 255, 0.8);
+    margin-bottom: 40px;
+    max-width: 800px;
+    margin-left: auto;
+    margin-right: auto;
+}
+
+.download-card {
+    background: rgba(110, 175, 61, 0.2);
+    border: 2px solid var(--grass-green);
+    border-radius: 15px;
+    padding: 40px;
+    text-align: center;
+    max-width: 600px;
+    margin: 0 auto 60px;
+    box-shadow: 0 8px 32px rgba(0, 0, 0, 0.3);
+    transition: all 0.3s ease;
+}
+
+.download-card:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 12px 48px rgba(110, 175, 61, 0.4);
+}
+
+.download-icon {
+    font-size: 4rem;
+    margin-bottom: 20px;
+}
+
+.download-card h3 {
+    font-size: 2rem;
+    margin-bottom: 10px;
+    color: var(--gold);
+}
+
+.download-card p {
+    font-size: 1.1rem;
+    color: rgba(255, 255, 255, 0.8);
+    margin-bottom: 25px;
+}
+
+.download-btn {
+    display: inline-block;
+    background: var(--grass-green);
+    color: white;
+    text-decoration: none;
+    padding: 15px 40px;
+    border-radius: 8px;
+    font-size: 1.1rem;
+    font-weight: 700;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+    transition: all 0.3s ease;
+    box-shadow: 0 4px 15px rgba(110, 175, 61, 0.4);
+}
+
+.download-btn:hover {
+    background: var(--dark-green);
+    transform: scale(1.05);
+    box-shadow: 0 6px 20px rgba(110, 175, 61, 0.6);
+}
+
+/* Installation Guide */
+.installation-guide {
+    background: rgba(255, 255, 255, 0.05);
+    border: 2px solid rgba(255, 255, 255, 0.1);
+    border-radius: 15px;
+    padding: 40px;
+    max-width: 900px;
+    margin: 0 auto;
+}
+
+.installation-guide h3 {
+    font-size: 2rem;
+    color: var(--gold);
+    margin-bottom: 30px;
+    text-align: center;
+}
+
+.install-steps {
+    list-style: none;
+    counter-reset: step-counter;
+}
+
+.install-steps li {
+    counter-increment: step-counter;
+    position: relative;
+    padding-left: 60px;
+    margin-bottom: 35px;
+}
+
+.install-steps li::before {
+    content: counter(step-counter);
+    position: absolute;
+    left: 0;
+    top: 0;
+    background: var(--grass-green);
+    color: white;
+    width: 40px;
+    height: 40px;
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 1.3rem;
+    font-weight: 700;
+    box-shadow: 0 4px 15px rgba(110, 175, 61, 0.4);
+}
+
+.install-steps strong {
+    display: block;
+    font-size: 1.3rem;
+    color: var(--gold);
+    margin-bottom: 10px;
+}
+
+.install-steps p {
+    color: rgba(255, 255, 255, 0.8);
+    margin-bottom: 10px;
+    line-height: 1.6;
+}
+
+.prism-link,
+.java-link {
+    display: inline-block;
+    background: rgba(110, 175, 61, 0.3);
+    color: var(--grass-green);
+    text-decoration: none;
+    padding: 10px 20px;
+    border-radius: 8px;
+    border: 2px solid var(--grass-green);
+    font-weight: 600;
+    transition: all 0.3s ease;
+    margin-top: 5px;
+}
+
+.prism-link:hover,
+.java-link:hover {
+    background: var(--grass-green);
+    color: white;
+    transform: translateX(5px);
+}
+
+.troubleshooting {
+    background: rgba(255, 170, 0, 0.1);
+    border: 2px solid rgba(255, 170, 0, 0.3);
+    border-radius: 10px;
+    padding: 25px;
+    margin-top: 40px;
+}
+
+.troubleshooting h4 {
+    font-size: 1.5rem;
+    color: #ffaa00;
+    margin-bottom: 20px;
+}
+
+.issue {
+    margin-bottom: 15px;
+}
+
+.issue strong {
+    display: block;
+    color: var(--gold);
+    margin-bottom: 8px;
+    font-size: 1.1rem;
+}
+
+.issue p {
+    color: rgba(255, 255, 255, 0.8);
+    margin-bottom: 10px;
+}
+
+/* Mods Section */
+.mods-section {
+    padding: 60px 20px;
+    animation: fadeIn 1s ease-out 0.8s both;
+}
+
+.mods-section h2 {
+    text-align: center;
+    font-size: 2.5rem;
+    margin-bottom: 20px;
+    color: var(--gold);
+    text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.5);
+}
+
+.mods-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+    gap: 30px;
+    margin-top: 40px;
+}
+
+.mod-card {
+    background: rgba(255, 255, 255, 0.05);
+    border: 2px solid rgba(255, 255, 255, 0.1);
+    border-radius: 15px;
+    padding: 30px;
+    transition: all 0.3s ease;
+}
+
+.mod-card:hover {
+    background: rgba(255, 255, 255, 0.1);
+    border-color: var(--gold);
+    transform: translateY(-5px);
+    box-shadow: 0 12px 48px rgba(255, 215, 0, 0.2);
+}
+
+.mod-icon {
+    font-size: 3rem;
+    margin-bottom: 15px;
+    text-align: center;
+}
+
+.mod-card h3 {
+    font-size: 1.5rem;
+    color: var(--gold);
+    margin-bottom: 15px;
+    text-align: center;
+}
+
+.mod-card p {
+    color: rgba(255, 255, 255, 0.8);
+    line-height: 1.8;
+    text-align: left;
+}
+
 /* Responsive Design */
 @media (max-width: 768px) {
     h1 {
@@ -611,6 +856,25 @@ footer p {
 
     .features-grid {
         grid-template-columns: 1fr;
+    }
+
+    .mods-grid {
+        grid-template-columns: 1fr;
+    }
+
+    .modpack-section h2,
+    .mods-section h2 {
+        font-size: 2rem;
+    }
+
+    .install-steps li {
+        padding-left: 50px;
+    }
+
+    .install-steps li::before {
+        width: 35px;
+        height: 35px;
+        font-size: 1.1rem;
     }
 
     .cta h2 {
@@ -659,6 +923,24 @@ footer p {
 
     .status-value {
         font-size: 1.1rem;
+    }
+
+    .download-card {
+        padding: 30px 20px;
+    }
+
+    .installation-guide {
+        padding: 30px 20px;
+    }
+
+    .install-steps li {
+        padding-left: 45px;
+    }
+
+    .install-steps li::before {
+        width: 30px;
+        height: 30px;
+        font-size: 1rem;
     }
 
     .server-ip {

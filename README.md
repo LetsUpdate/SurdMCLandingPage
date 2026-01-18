@@ -2,10 +2,14 @@
 
 A lightweight, modern landing page for the SurdMC.eu Minecraft server. Built with performance and SEO in mind.
 
+**Server Type:** Modded NeoForge 1.21.1 with tech and building mods including Mekanism, Ender IO, AE2, Carpenters, and Chisel.
+
 ## Features
 
 - 🎨 **Modern Design**: Simple yet innovative Minecraft-themed design
 - 📱 **Fully Responsive**: Optimized for both mobile and desktop devices
+- 🎮 **Modpack Download**: MEKApack.mrpack download with installation guide
+- 🔧 **Modded Server**: NeoForge 1.21.1 with tech and building mods
 - 🚀 **Lightning Fast**: Minimal dependencies and RAM-optimized server
 - 🔍 **SEO Optimized**: Comprehensive meta tags and structured data for search engines
 - 💬 **Social Media Ready**: Open Graph tags for Facebook/Messenger previews
@@ -26,6 +30,7 @@ SurdMCLandingPage/
 │   ├── style.css       # Stylesheet
 │   ├── favicon.svg     # Site favicon
 │   ├── og-image.png    # Social media preview image
+│   ├── MEKApack.mrpack # Modpack download file
 │   ├── robots.txt      # SEO crawler directives
 │   └── sitemap.xml     # SEO sitemap
 ├── server.js           # Node.js static file server (optional)
