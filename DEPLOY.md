@@ -22,7 +22,7 @@ This guide will help you deploy the SurdMC Landing Page to DigitalOcean App Plat
    - Click **"Next"**
 
 3. **Review Configuration**
-   - DigitalOcean will **automatically detect** the `app.yaml` file
+   - DigitalOcean will **automatically detect** the `.do/app.yaml` file
    - The configuration will show:
      - **Type**: Static Site
      - **Output Directory**: `public`
@@ -48,7 +48,7 @@ This guide will help you deploy the SurdMC Landing Page to DigitalOcean App Plat
 
 ### Static Site Configuration
 
-The repository includes a pre-configured `app.yaml` file with the following settings:
+The repository includes a pre-configured `.do/app.yaml` file with the following settings:
 
 ```yaml
 name: surdmc-landing-page
@@ -60,13 +60,9 @@ static_sites:
       repo: LetsUpdate/SurdMCLandingPage
       branch: main
       deploy_on_push: true
-    source_dir: /
-    output_dir: /public
+    output_dir: public
     catchall_document: index.html
     error_document: index.html
-    routes:
-      - path: /
-    environment_slug: html
 ```
 
 ### What This Configuration Does:
@@ -121,11 +117,11 @@ Once set up:
 
 ### Site shows 404 error
 - Check that the `public/` directory contains all your files
-- Verify the `output_dir` in `app.yaml` is set to `/public`
+- Verify the `output_dir` in `.do/app.yaml` is set to `public`
 
 ### Deployment fails
 - Check deployment logs in DigitalOcean dashboard
-- Ensure `app.yaml` syntax is correct
+- Ensure `.do/app.yaml` syntax is correct
 - Verify GitHub repository permissions
 
 ### CSS/Images not loading
