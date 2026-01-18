@@ -13,6 +13,7 @@ The SurdMC Landing Page repository has been successfully reorganized and configu
   - style.css (stylesheet)
   - favicon.svg & favicon.png (favicons)
   - og-image.svg & og-image.png (social media previews)
+  - MEKApack.mrpack (modpack download file)
   - robots.txt (SEO)
   - sitemap.xml (SEO)
 
@@ -95,6 +96,7 @@ SurdMCLandingPage/
 │   ├── favicon.png
 │   ├── og-image.svg
 │   ├── og-image.png
+│   ├── MEKApack.mrpack
 │   ├── robots.txt
 │   └── sitemap.xml
 ├── .do/
@@ -118,6 +120,8 @@ SurdMCLandingPage/
 - 🔒 **Secure**: Security headers configured
 - ⚡ **Fast**: Static site with optional caching
 - 🎯 **Zero Build**: No build process required
+- 🎮 **Modded Server**: NeoForge 1.21.1 with tech & building mods
+- 📦 **Modpack Download**: MEKApack.mrpack with installation guide
 
 ## Next Steps
 

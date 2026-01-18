@@ -11,6 +11,7 @@ SurdMCLandingPage/
 │   ├── favicon.png     # Site favicon (raster)
 │   ├── og-image.svg    # Social media preview (vector)
 │   ├── og-image.png    # Social media preview (raster)
+│   ├── MEKApack.mrpack # Modpack download file
 │   ├── robots.txt      # SEO crawler directives
 │   └── sitemap.xml     # SEO sitemap
 ├── .do/
@@ -121,6 +122,8 @@ PORT=8080 CACHE_ENABLED=true NODE_ENV=production npm start
 - ✅ Security headers configured
 - ✅ Zero build process required
 - ✅ Free tier compatible
+- ✅ Modded server info (NeoForge 1.21.1)
+- ✅ Modpack download with installation guide
 
 ## 🆘 Common Issues
 
