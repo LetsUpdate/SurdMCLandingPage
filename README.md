@@ -15,6 +15,25 @@ A lightweight, modern landing page for the SurdMC.eu Minecraft server. Built wit
 - 🎮 **Multi-Device Animations**: Parallax effects work on desktop (mouse), mobile (gyroscope), and touch
 - 🏥 **Health Check**: Built-in `/health` endpoint for monitoring
 - 🤖 **SEO Structured Data**: JSON-LD schema for better search engine understanding
+- ☁️ **1-Click Deploy**: Ready for DigitalOcean App Platform deployment
+
+## Project Structure
+
+```
+SurdMCLandingPage/
+├── public/              # Static website files (web root)
+│   ├── index.html      # Main landing page
+│   ├── style.css       # Stylesheet
+│   ├── favicon.svg     # Site favicon
+│   ├── og-image.png    # Social media preview image
+│   ├── robots.txt      # SEO crawler directives
+│   └── sitemap.xml     # SEO sitemap
+├── server.js           # Node.js static file server (optional)
+├── package.json        # Node.js dependencies
+├── app.yaml            # DigitalOcean App Platform config
+└── .do/
+    └── app.yaml        # Alternative DigitalOcean config location
+```
 
 ## Tech Stack
 
@@ -140,26 +159,51 @@ Edit `server.js` to:
 
 ## Deployment
 
-### Linux Systemd Service (Recommended for Production)
+### DigitalOcean App Platform (Recommended - 1-Click Deploy) 🚀
 
-For production deployment on Linux servers, set up the application as a systemd service for automatic startup and management.
+The easiest way to deploy this website is using DigitalOcean App Platform as a static site.
 
-**See the complete guide:** [SYSTEMD_SETUP.md](SYSTEMD_SETUP.md)
+#### Quick Deploy (1-Click)
 
-Quick setup:
-```bash
-# Use the provided setup script
-sudo ./setup-service.sh
-```
+1. **Fork or Clone** this repository to your GitHub account
+2. **Sign in** to [DigitalOcean App Platform](https://cloud.digitalocean.com/apps)
+3. **Create New App** and select your GitHub repository
+4. DigitalOcean will **automatically detect** the `app.yaml` configuration
+5. **Review and Deploy** - that's it! Your site will be live in minutes.
 
-The systemd service provides:
-- Automatic startup on system boot
-- Automatic restart on crashes
-- Memory limits and security hardening
-- Centralized logging with journalctl
-- Easy management with systemctl commands
+#### What's Included
 
-### Production Deployment (Manual)
+The repository includes pre-configured `app.yaml` and `.do/app.yaml` files that:
+- Deploy the site as a **static website** (fast and free tier available)
+- Use the `public/` directory as the web root
+- Configure proper routing and error handling
+- Set up automatic deployments on push to main branch
+- Deploy to the Frankfurt (fra) region by default
+
+#### Manual Configuration
+
+If you prefer to configure manually:
+
+1. In DigitalOcean App Platform, click **"Create App"**
+2. Connect your **GitHub** repository
+3. Select **Static Site** as the component type
+4. Set the following:
+   - **Output Directory**: `public`
+   - **Catchall Document**: `index.html`
+   - **Error Document**: `index.html`
+5. Click **"Next"** and then **"Create Resources"**
+
+#### Costs
+
+- DigitalOcean App Platform offers a **free tier** for static sites
+- Basic static sites: **$0/month** (up to 3 static sites)
+- Check [DigitalOcean Pricing](https://www.digitalocean.com/pricing/app-platform) for current rates
+
+### Alternative Deployment Options
+
+#### Node.js Server Deployment (VPS/Self-hosted)
+
+If you prefer to host on your own VPS or server using the included Node.js server:
 
 1. Set environment variables:
 ```bash
@@ -172,7 +216,9 @@ export PORT=80
 npm run prod
 ```
 
-### Using Process Manager (PM2)
+#### Using Process Manager (PM2)
+
+For production deployments with automatic restarts:
 
 ```bash
 npm install -g pm2
@@ -181,7 +227,7 @@ pm2 startup
 pm2 save
 ```
 
-### Docker Deployment
+#### Docker Deployment
 
 Create a `Dockerfile`:
 ```dockerfile
