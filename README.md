@@ -271,3 +271,7 @@ For issues or questions, please open an issue on GitHub.
 ---
 
 **Note**: This is not an official Minecraft product. Not approved by or associated with Mojang or Microsoft.
+
+---
+
+<a href="https://www.digitalocean.com/?refcode=4d902450daf3&utm_campaign=Referral_Invite&utm_medium=Referral_Program&utm_source=badge"><img src="https://web-platforms.sfo2.cdn.digitaloceanspaces.com/WWW/Badge%201.svg" alt="Powered by DigitalOcean"></a>
