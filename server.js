@@ -207,12 +207,13 @@ const server = http.createServer((req, res) => {
         urlPath = '/index.html';
     }
     
-    // Construct file path
-    const filePath = path.join(__dirname, urlPath);
+    // Construct file path from public directory
+    const filePath = path.join(__dirname, 'public', urlPath);
     
-    // Security check: ensure file is within the server directory
+    // Security check: ensure file is within the public directory
+    const publicDir = path.join(__dirname, 'public');
     const normalizedPath = path.normalize(filePath);
-    if (!normalizedPath.startsWith(__dirname)) {
+    if (!normalizedPath.startsWith(publicDir)) {
         serve404(res);
         log(`Security: Blocked path traversal attempt: ${req.url}`);
         return;
