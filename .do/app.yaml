@@ -7,7 +7,6 @@ static_sites:
       repo: LetsUpdate/SurdMCLandingPage
       branch: main
       deploy_on_push: true
-    source_dir: /
-    output_dir: /public
+    output_dir: public
     catchall_document: index.html
     error_document: index.html

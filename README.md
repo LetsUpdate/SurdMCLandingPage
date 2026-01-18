@@ -35,9 +35,8 @@ SurdMCLandingPage/
 │   └── sitemap.xml     # SEO sitemap
 ├── server.js           # Node.js static file server (optional)
 ├── package.json        # Node.js dependencies
-├── app.yaml            # DigitalOcean App Platform config
 └── .do/
-    └── app.yaml        # Alternative DigitalOcean config location
+    └── app.yaml        # DigitalOcean App Platform config
 ```
 
 ## Tech Stack
@@ -173,17 +172,17 @@ The easiest way to deploy this website is using DigitalOcean App Platform as a s
 1. **Fork or Clone** this repository to your GitHub account
 2. **Sign in** to [DigitalOcean App Platform](https://cloud.digitalocean.com/apps)
 3. **Create New App** and select your GitHub repository
-4. DigitalOcean will **automatically detect** the `app.yaml` configuration
+4. DigitalOcean will **automatically detect** the `.do/app.yaml` configuration
 5. **Review and Deploy** - that's it! Your site will be live in minutes.
 
 #### What's Included
 
-The repository includes pre-configured `app.yaml` and `.do/app.yaml` files that:
-- Deploy the site as a **static website** (fast and free tier available)
-- Use the `public/` directory as the web root
-- Configure proper routing and error handling
-- Set up automatic deployments on push to main branch
-- Deploy to the Frankfurt (fra) region by default
+The repository includes a pre-configured `.do/app.yaml` file that:
+- Deploys the site as a **static website** (fast and free tier available)
+- Uses the `public/` directory as the web root
+- Configures proper routing and error handling
+- Sets up automatic deployments on push to main branch
+- Deploys to the Frankfurt (fra) region by default
 
 #### Manual Configuration
 
@@ -272,3 +271,7 @@ For issues or questions, please open an issue on GitHub.
 ---
 
 **Note**: This is not an official Minecraft product. Not approved by or associated with Mojang or Microsoft.
+
+---
+
+<a href="https://www.digitalocean.com/?refcode=4d902450daf3&utm_campaign=Referral_Invite&utm_medium=Referral_Program&utm_source=badge"><img src="https://web-platforms.sfo2.cdn.digitaloceanspaces.com/WWW/Badge%201.svg" alt="Powered by DigitalOcean"></a>
