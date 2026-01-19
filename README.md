@@ -74,6 +74,7 @@ http://localhost:3000
 - `npm start` - Start the server in production mode
 - `npm run dev` - Start the server in development mode
 - `npm run prod` - Start the server with production settings
+- `npm run verify-keywords` - Verify that SEO keywords exist in the HTML
 
 ## Configuration
 
@@ -130,6 +131,7 @@ Returns server health status and metrics.
 
 - Semantic HTML5 structure
 - Meta tags for search engines
+- **SEO Keywords**: 12 targeted keywords for Minecraft server discovery (see [KEYWORDS.md](KEYWORDS.md))
 - Open Graph tags for social media (Facebook, Messenger, WhatsApp)
 - Canonical URL for proper indexing
 - Structured data (JSON-LD) for rich snippets
@@ -138,6 +140,16 @@ Returns server health status and metrics.
 - Optimized page load speed
 - Mobile-friendly responsive design
 - Proper heading hierarchy
+
+### Verifying Keywords
+
+To verify that SEO keywords are present in the HTML:
+
+```bash
+npm run verify-keywords
+```
+
+This will display all 12 keywords currently configured for SEO purposes. See [KEYWORDS.md](KEYWORDS.md) for the complete list and documentation.
 
 ### Facebook/Messenger Link Previews
 
