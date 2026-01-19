@@ -39,6 +39,7 @@ A következő Open Graph meta tagek vannak beállítva az oldalon:
 - ✅ `og:site_name` - SurdMC.eu
 - ✅ `og:locale` - hu_HU
 - ✅ `canonical URL` - Hozzáadva a SEO javításához
+- ⚠️ `fb:app_id` - Opcionális (csak analytics-hoz szükséges, link előnézet működik nélküle is)
 
 ### 3. Képméret követelmények
 
@@ -68,6 +69,25 @@ Facebook/Messenger képkövetelmények:
 #### A kép túl kicsi figyelmeztetés
 - **Ok:** Korábban kisebb kép volt használva
 - **Megoldás:** Most már megfelelő méretű kép van (2000x1057), futtasd újra a Debugger-t
+
+#### "Missing Properties: fb:app_id" figyelmeztetés
+- **Ok:** A `fb:app_id` meta tag hiányzik
+- **Hatás:** Ez csak egy figyelmeztetés, NEM befolyásolja a link előnézetet Messenger-en vagy Facebook-on
+- **Mikor van rá szükség:**
+  - Ha Facebook Insights-ot szeretnél használni (részletes statisztikák a megosztásokról)
+  - Ha Facebook App-ot fejlesztesz
+  - Ha részletes analytics-re van szükséged
+- **Megoldás (opcionális):**
+  1. Menj a [Facebook Developers](https://developers.facebook.com/) oldalra
+  2. Kattints "My Apps" → "Create App"
+  3. Válaszd a "Consumer" vagy "Business" típust
+  4. Add meg az app nevét (pl. "SurdMC Website")
+  5. Másold ki az App ID-t
+  6. Add hozzá az `index.html` fájlhoz a többi meta tag után:
+     ```html
+     <meta property="fb:app_id" content="YOUR_APP_ID_HERE">
+     ```
+- **Fontos:** A link előnézet működni fog `fb:app_id` NÉLKÜL is! Ez a tag csak analytics céljára szolgál.
 
 ### 5. Tesztelés
 
