@@ -1,5 +1,6 @@
 {
- "name": "App",
+ "name": "SurdMC.eu - Minecraft Szerver",
+ "short_name": "SurdMC.eu",
  "icons": [
   {
    "src": "\/android-icon-36x36.png",
