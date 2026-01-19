@@ -33,11 +33,22 @@ function checkKeywords() {
     }
     
     // Read file content
-    const content = fs.readFileSync(indexHtmlPath, 'utf8');
+    let content;
+    try {
+        content = fs.readFileSync(indexHtmlPath, 'utf8');
+    } catch (err) {
+        console.log(`${colors.red}✗ Error reading file: ${err.message}${colors.reset}`);
+        process.exit(1);
+    }
     
-    // Check for keywords meta tag
-    const keywordsRegex = /<meta\s+name=["']keywords["']\s+content=["']([^"']+)["']\s*\/?>/i;
-    const match = content.match(keywordsRegex);
+    // Check for keywords meta tag (handles different attribute orders)
+    const keywordsRegex1 = /<meta\s+name=["']keywords["']\s+content=["']([^"']+)["']\s*\/?>/i;
+    const keywordsRegex2 = /<meta\s+content=["']([^"']+)["']\s+name=["']keywords["']\s*\/?>/i;
+    
+    let match = content.match(keywordsRegex1);
+    if (!match) {
+        match = content.match(keywordsRegex2);
+    }
     
     if (match) {
         const keywords = match[1];

@@ -149,6 +149,13 @@ To verify that SEO keywords are present in the HTML:
 npm run verify-keywords
 ```
 
+Or run the script directly (requires Node.js):
+
+```bash
+node verify-keywords.js
+# Or make it executable: chmod +x verify-keywords.js && ./verify-keywords.js
+```
+
 This will display all 12 keywords currently configured for SEO purposes. See [KEYWORDS.md](KEYWORDS.md) for the complete list and documentation.
 
 ### Facebook/Messenger Link Previews
