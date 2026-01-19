@@ -130,13 +130,21 @@ Returns server health status and metrics.
 
 - Semantic HTML5 structure
 - Meta tags for search engines
-- Open Graph tags for social media
+- Open Graph tags for social media (Facebook, Messenger, WhatsApp)
+- Canonical URL for proper indexing
 - Structured data (JSON-LD) for rich snippets
 - robots.txt for crawler directives
 - sitemap.xml for search engine indexing
 - Optimized page load speed
 - Mobile-friendly responsive design
 - Proper heading hierarchy
+
+### Facebook/Messenger Link Previews
+
+If link previews don't appear correctly on Facebook Messenger, see the [Facebook Messenger SEO Troubleshooting Guide](FACEBOOK_MESSENGER_SEO.md) for detailed instructions on:
+- Using Facebook's Sharing Debugger to refresh the cache
+- Verifying Open Graph meta tags
+- Common issues and solutions
 
 ## Customization
 
