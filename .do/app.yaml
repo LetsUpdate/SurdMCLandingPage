@@ -7,6 +7,7 @@ static_sites:
       repo: LetsUpdate/SurdMCLandingPage
       branch: main
       deploy_on_push: true
+    build_command: git lfs install && git lfs pull
     output_dir: public
     catchall_document: index.html
     error_document: index.html
